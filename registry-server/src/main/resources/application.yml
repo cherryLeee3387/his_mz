@@ -1,0 +1,11 @@
+server:        #端口号
+  port: 8761
+eureka:      #eureka地址
+  instance:
+      hostname: localhost
+      prefer-ip-address: true
+  client:
+    service-url:
+      default-zone: ${eureka.instance.hostname}:${server.port}/eureka
+    fetch-registry: false
+    register-with-eureka: false

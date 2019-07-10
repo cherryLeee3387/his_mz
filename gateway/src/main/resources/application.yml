@@ -1,0 +1,23 @@
+server:        #端口号
+  port: 5555
+spring:        #注册到eureka的名称
+  application:
+    name: drug
+eureka:      #注册到的eureka的地址
+  client:
+    service-url:
+      default-zone: http://127.0.0.1:8761/eureka
+zuul:         #映射不同的路径到各个微服务中
+  routes:
+     menzhen:
+       path: /api/menzhen/**       #路由器接收到前台的地址的头部分是/api/menzhen的，那么就会将所有的请求都发送到menzhen的服务器上
+         serviceId: menzhen       #具体的微服务当中的spring-application-name
+     doctor:
+       path: /api/doctor/**
+         serviceId: doctor
+     drug:
+        path: /api/drug/**
+          serviceId: drug
+     doctor:
+        path: /api/global/**
+          serviceId: global
